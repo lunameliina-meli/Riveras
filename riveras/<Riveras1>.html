@@ -1,0 +1,707 @@
+  <!DOCTYPE html>
+  <html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIVERAS: Proyecto Comunitario UTCJ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* Tu Paleta Personalizada */
+        --amarillo-miel: #FFDB7B;
+        --verde-manzana: #B9D672;
+        --azul-turquesa: #77C9C5;
+        --azul-profundo: #1D5C8A;
+        --blanco: #FFFFFF;
+        --gris-fondo: #F8FAF7;
+        --texto-principal: #2B3430;
+        --texto-suave: #5C6B64;
+        
+        --radio-capsula: 50px;
+        --radio-card: 20px;
+        --sombra-editorial: 0 10px 30px rgba(0,0,0,0.05);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background-color: var(--gris-fondo);
+        color: var(--texto-principal);
+        overflow-x: hidden;
+      }
+
+      /* BARRA DE NAVEGACIÓN ESTILO LUMINA */
+      .top-header {
+        background-color: var(--blanco);
+        padding: 18px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        border-bottom: 1px solid rgba(0,0,0,0.06);
+      }
+
+      .brand-logo {
+        font-family: 'Playfair Display', serif;
+        font-weight: 800;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        color: var(--texto-principal);
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .plant-icon {
+        width: 24px;
+        height: 24px;
+        fill: var(--verde-manzana);
+      }
+
+      .top-nav {
+        display: flex;
+        gap: 15px;
+      }
+
+      .top-nav a {
+        color: var(--texto-principal);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.88rem;
+        padding: 8px 18px;
+        border-radius: var(--radio-capsula);
+        transition: all 0.3s;
+      }
+
+      .top-nav a:hover {
+        background-color: var(--gris-fondo);
+      }
+
+      .btn-action-header {
+        background-color: var(--azul-turquesa);
+        color: var(--blanco);
+        font-weight: 700;
+        padding: 10px 22px;
+        border-radius: var(--radio-capsula);
+        text-decoration: none;
+        font-size: 0.85rem;
+      }
+
+      /* CONTENEDOR GENERAL */
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 40px 20px 80px;
+      }
+
+      /* SECCIÓN HERO ESTILO BLOQUE DUAL LUMINA */
+      .hero-lumina-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 60px;
+      }
+
+      .hero-card-left {
+        background-color: var(--azul-turquesa);
+        color: var(--blanco);
+        border-radius: var(--radio-card);
+        padding: 45px 35px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .hero-subtitle-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background-color: var(--amarillo-miel);
+        color: var(--texto-principal);
+        font-size: 0.78rem;
+        font-weight: 800;
+        padding: 6px 14px;
+        border-radius: var(--radio-capsula);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        width: fit-content;
+        margin-bottom: 20px;
+      }
+
+      .hero-title-main {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.8rem;
+        line-height: 1.15;
+        margin-bottom: 15px;
+      }
+
+      .hero-card-right {
+        background-color: var(--amarillo-miel);
+        border-radius: var(--radio-card);
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .hero-img-box {
+        width: 100%;
+        height: 250px;
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        background-color: var(--blanco);
+      }
+
+      .hero-img-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .btn-capsule-dark {
+        background-color: var(--texto-principal);
+        color: var(--blanco);
+        font-weight: 700;
+        padding: 12px 28px;
+        border-radius: var(--radio-capsula);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: opacity 0.3s;
+        display: inline-block;
+      }
+
+      .btn-capsule-dark:hover {
+        opacity: 0.9;
+      }
+
+      /* TÍTULOS EDITORIALES */
+      .section-title-editorial {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.3rem;
+        text-align: center;
+        margin-bottom: 35px;
+        color: var(--texto-principal);
+      }
+
+      /* GALERÍA DE DIAGNÓSTICO */
+      .diagnosis-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 20px;
+        margin-bottom: 70px;
+      }
+
+      .card-photo-polaroid {
+        background-color: var(--blanco);
+        border-radius: var(--radio-card);
+        padding: 16px;
+        box-shadow: var(--sombra-editorial);
+        border: 1px solid rgba(0,0,0,0.04);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-photo-polaroid .img-container {
+        width: 100%;
+        height: 180px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 14px;
+        background-color: var(--gris-fondo);
+      }
+
+      .card-photo-polaroid img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .card-photo-title {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: var(--texto-principal);
+        margin-bottom: 4px;
+      }
+
+      .card-photo-desc {
+        font-size: 0.85rem;
+        color: var(--texto-suave);
+        line-height: 1.4;
+      }
+
+      /* PASOS DE NUESTRA IDEA */
+      .idea-steps-container {
+        background-color: var(--blanco);
+        border-radius: var(--radio-card);
+        padding: 40px;
+        box-shadow: var(--sombra-editorial);
+        margin-bottom: 70px;
+      }
+
+      .steps-horizontal-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 20px;
+        text-align: center;
+      }
+
+      .step-circle-badge {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background-color: var(--verde-manzana);
+        color: var(--texto-principal);
+        font-family: 'Playfair Display', serif;
+        font-size: 1.4rem;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 12px;
+      }
+
+      .step-title-text {
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: var(--texto-principal);
+      }
+
+      /* LOGÍSTICA EN ACCIÓN */
+      .logistics-flow-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 15px;
+        margin-bottom: 70px;
+      }
+
+      .logistics-box-node {
+        background-color: var(--verde-manzana);
+        padding: 25px 20px;
+        border-radius: var(--radio-card);
+        color: var(--texto-principal);
+      }
+
+      .logistics-box-node.alt-color-1 { background-color: var(--amarillo-miel); }
+      .logistics-box-node.alt-color-2 { background-color: var(--azul-turquesa); color: var(--blanco); }
+
+      .node-header-tag {
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.8;
+        margin-bottom: 8px;
+      }
+
+      .node-body-title {
+        font-weight: 800;
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+      }
+
+      .node-body-desc {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        opacity: 0.9;
+      }
+
+      /* COMPARATIVO ANTES Y DESPUÉS */
+      .compare-lumina-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 70px;
+      }
+
+      .compare-box {
+        background-color: var(--blanco);
+        border-radius: var(--radio-card);
+        padding: 25px;
+        box-shadow: var(--sombra-editorial);
+      }
+
+      .compare-box .img-wrapper {
+        width: 100%;
+        height: 230px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-top: 15px;
+        background-color: var(--gris-fondo);
+      }
+
+      .compare-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .compare-label {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+      }
+
+      /* INTEGRANTES DEL EQUIPO */
+      .team-section-shell {
+        background: linear-gradient(135deg, rgba(119, 201, 197, 0.18), rgba(0, 95, 170, 0.12));
+        border-radius: 26px;
+        padding: 35px 22px 25px;
+        margin-bottom: 70px;
+        box-shadow: var(--sombra-editorial);
+      }
+
+      .team-section-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+      }
+
+      .team-member-card {
+        border-radius: var(--radio-card);
+        padding: 25px 20px;
+        text-align: center;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.08);
+        transition: transform 0.25s ease;
+      }
+
+      .team-member-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .team-member-card.blue { background-color: var(--azul-turquesa); color: var(--blanco); }
+      .team-member-card.deep-blue { background-color: #005FAA; color: var(--blanco); }
+
+      .team-member-name {
+        font-weight: 700;
+        font-size: 1.05rem;
+        color: inherit;
+        margin-bottom: 4px;
+      }
+
+      .team-member-role {
+        font-size: 0.82rem;
+        color: inherit;
+        opacity: 0.9;
+      }
+
+      .team-badge-pill {
+        display: inline-block;
+        background-color: rgba(255, 255, 255, 0.22);
+        color: inherit;
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: var(--radio-capsula);
+        margin-top: 10px;
+      }
+
+      /* SECCIÓN QR Y GOOGLE FORMS */
+      .qr-card-container {
+        background-color: var(--blanco);
+        border-radius: var(--radio-card);
+        padding: 40px 20px;
+        max-width: 550px;
+        margin: 0 auto;
+        box-shadow: var(--sombra-editorial);
+        text-align: center;
+      }
+
+      .qr-image-box {
+        background-color: var(--gris-fondo);
+        padding: 15px;
+        border-radius: 16px;
+        display: inline-block;
+        margin: 20px 0;
+        border: 1px solid #E2E8F0;
+      }
+
+      .qr-image-box img {
+        width: 200px;
+        height: 200px;
+        display: block;
+      }
+
+      .qr-subtext {
+        color: var(--texto-suave);
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+        line-height: 1.4;
+      }
+
+      /* FOOTER AZUL ESTILO LUMINA */
+      footer {
+        background-color: var(--azul-profundo);
+        color: var(--blanco);
+        padding: 50px 20px 40px;
+        text-align: center;
+      }
+
+      .footer-title-large {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+
+      .footer-credits {
+        font-size: 0.88rem;
+        opacity: 0.85;
+        line-height: 1.6;
+      }
+
+      /* RESPONSIVO */
+      @media (max-width: 768px) {
+        .hero-lumina-grid { grid-template-columns: 1fr; }
+        .compare-lumina-grid { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- NAVEGACIÓN CON ICONO DE PLANTITA -->
+    <header class="top-header">
+      <div class="brand-logo">
+        <svg class="plant-icon" viewBox="0 0 24 24">
+          <path d="M12,3C6.5,3 2,6.5 2,12C2,14.2 2.8,16.2 4.1,17.8L2.5,21L6.2,19.9C7.9,20.6 9.9,21 12,21C17.5,21 22,16.5 22,11C22,5.5 17.5,3 12,3M12,19C10.2,19 8.5,18.6 7,17.8L6.4,17.5L4.4,18.1L5.1,16.2L4.7,15.5C3.9,14.2 3.5,12.6 3.5,11C3.5,6.9 7.3,4.5 12,4.5C16.7,4.5 20.5,8.3 20.5,13C20.5,17.7 16.7,19 12,19Z"/>
+        </svg>
+        RIVERAS
+      </div>
+      <nav class="top-nav">
+        <a href="#diagnostico">Diagnóstico</a>
+        <a href="#propuesta">Propuesta</a>
+        <a href="#conocenos">Conócenos</a>
+      </nav>
+      <a href="#contacto" class="btn-action-header">Participar</a>
+    </header>
+
+    <div class="container">
+
+      <!-- HERO PRINCIPAL -->
+      <section class="hero-lumina-grid">
+        <div class="hero-card-left">
+          <span class="hero-subtitle-tag">
+            🌱 Proyecto Comunitario UTCJ
+          </span>
+          <h1 class="hero-title-main">Un parque para Riberas del Bravo.</h1>
+          <p style="opacity: 0.9; line-height: 1.5; font-size: 0.95rem;">
+            Iniciativa de desarrollo logístico y sustentabilidad orientada a la rehabilitación comunitaria.
+          </p>
+        </div>
+
+        <div class="hero-card-right">
+          <div class="hero-img-box">
+            <img src="img/juegos-azules.jpg" alt="Cancha Sintética del Parque Riberas">
+          </div>
+          <a href="#propuesta" class="btn-capsule-dark">Conocer el plan</a>
+        </div>
+      </section>
+
+      <!-- GALERÍA DE DIAGNÓSTICO FOTOGRÁFICO -->
+      <section id="diagnostico">
+        <h2 class="section-title-editorial">Diagnóstico territorial</h2>
+        
+        <div class="diagnosis-grid">
+          
+          <div class="card-photo-polaroid">
+            <div class="img-container">
+              <img src="img/limpieza-vegetacion.jpg" alt="Acumulación de maleza y ramas">
+            </div>
+            <div class="card-photo-title">Limpieza de vegetación</div>
+            <div class="card-photo-desc">Acumulación de materia orgánica seca y ramas sobrantes que obstruyen las áreas de tránsito.</div>
+          </div>
+
+          <div class="card-photo-polaroid">
+            <div class="img-container">
+              <img src="img/parque-juegos.jpg" alt="Estructuras de juegos infantiles">
+            </div>
+            <div class="card-photo-title">Equipamiento recreativo</div>
+            <div class="card-photo-desc">Evaluación del estado de resbaladillas y estructuras modulares para su mantenimiento.</div>
+          </div>
+
+          <div class="card-photo-polaroid">
+            <div class="img-container">
+              <img src="img/botes-de basura.jpg" alt="Contenedores de depósito">
+            </div>
+            <div class="card-photo-title">Gestión de residuos</div>
+            <div class="card-photo-desc">Verificación y optimización de contenedores para clasificación de desechos.</div>
+          </div>
+
+          <div class="card-photo-polaroid">
+            <div class="img-container">
+              <img src="img/culumpios inundados.jpg" alt="Charcos de agua en camellones">
+            </div>
+            <div class="card-photo-title">Control de escurrimientos</div>
+            <div class="card-photo-desc">Identificación de áreas con acumulación pluvial que requieren nivelación de terreno.</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PASOS DE NUESTRA IDEA -->
+      <section id="propuesta" class="idea-steps-container">
+        <h2 class="section-title-editorial" style="margin-bottom: 30px;">Metodología del proyecto</h2>
+        
+        <div class="steps-horizontal-grid">
+          <div>
+            <div class="step-circle-badge">1</div>
+            <div class="step-title-text">Detección</div>
+          </div>
+          <div>
+            <div class="step-circle-badge">2</div>
+            <div class="step-title-text">Análisis</div>
+          </div>
+          <div>
+            <div class="step-circle-badge">3</div>
+            <div class="step-title-text">Organización</div>
+          </div>
+          <div>
+            <div class="step-circle-badge">4</div>
+            <div class="step-title-text">Propuesta</div>
+          </div>
+          <div>
+            <div class="step-circle-badge">5</div>
+            <div class="step-title-text">Implementación</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LOGÍSTICA EN ACCIÓN -->
+      <section style="margin-bottom: 70px;">
+        <h2 class="section-title-editorial">Logística en Acción</h2>
+
+        <div class="logistics-flow-grid">
+          
+          <div class="logistics-box-node">
+            <div class="node-header-tag">Fase 01</div>
+            <div class="node-body-title">Necesidades</div>
+            <div class="node-body-desc">Mapeo del estado físico y priorización de zonas estratégicas del parque.</div>
+          </div>
+
+          <div class="logistics-box-node alt-color-1">
+            <div class="node-header-tag">Fase 02</div>
+            <div class="node-body-title">Recursos</div>
+            <div class="node-body-desc">Cálculo de insumos, herramientas y gestión de materiales sustentables.</div>
+          </div>
+
+          <div class="logistics-box-node alt-color-2">
+            <div class="node-header-tag">Fase 03</div>
+            <div class="node-body-title">Organización</div>
+            <div class="node-body-desc">Planificación de tiempos de ejecución y asignación de tareas operativas.</div>
+          </div>
+
+          <div class="logistics-box-node">
+            <div class="node-header-tag">Fase 04</div>
+            <div class="node-body-title">Distribución</div>
+            <div class="node-body-desc">Suministro optimizado e implementación efectiva en la zona.</div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- COMPARATIVO ANTES Y DESPUÉS -->
+      <section style="margin-bottom: 70px;">
+        <h2 class="section-title-editorial">Transformación visual</h2>
+        
+        <div class="compare-lumina-grid">
+          <div class="compare-box">
+            <div class="compare-label" style="color: #D9534F;">Estado Actual</div>
+            <div class="img-wrapper">
+              <img src="img/cancha.jpg" alt="Estado actual con acumulación de maleza">
+            </div>
+          </div>
+
+          <div class="compare-box">
+            <div class="compare-label" style="color: var(--verde-manzana);">Propuesta Rehabilitada</div>
+            <div class="img-wrapper">
+              <img src="img/foto-despues.jpg" alt="Propuesta de espacio rehabilitado">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONÓCENOS (INTEGRANTES UTCJ) -->
+      <section id="conocenos" class="team-section-shell">
+        <h2 class="section-title-editorial">Equipo de Trabajo</h2>
+        <p style="text-align: center; color: var(--texto-suave); font-weight: 600; margin-top: -20px; margin-bottom: 30px;">
+          Universidad Tecnológica de Ciudad Juárez — Grupo OLM34
+        </p>
+
+        <div class="team-section-grid">
+          <div class="team-member-card blue">
+            <div class="team-member-name">Luna Mireles</div>
+            <div class="team-member-role">Gestión Logística</div>
+            <span class="team-badge-pill">UTCJ • OLM34</span>
+          </div>
+
+          <div class="team-member-card deep-blue">
+            <div class="team-member-name">Priscila Barron</div>
+            <div class="team-member-role">Análisis Territorial</div>
+            <span class="team-badge-pill">UTCJ • OLM34</span>
+          </div>
+
+          <div class="team-member-card blue">
+            <div class="team-member-name">Dulce Zuñiga</div>
+            <div class="team-member-role">Planificación de Insumos</div>
+            <span class="team-badge-pill">UTCJ • OLM34</span>
+          </div>
+
+          <div class="team-member-card deep-blue">
+            <div class="team-member-name">Ingrid Garcia</div>
+            <div class="team-member-role">Coordinación Universitaria</div>
+            <span class="team-badge-pill">UTCJ • OLM34</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN CÓDIGO QR / PARTICIPA U OPINA -->
+      <section id="contacto">
+        <div class="qr-card-container">
+          <h2 class="section-title-editorial" style="font-size: 2rem; margin-bottom: 10px;">¡Participa u opina!</h2>
+          <p class="qr-subtext">
+            Escanea el siguiente código QR con tu celular para acceder a nuestro formulario oficial y compartirnos tus sugerencias para el parque.
+          </p>
+
+          <div class="qr-image-box">
+            <!-- Código QR generado dinámicamente -->
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://docs.google.com/forms/d/e/1FAIpQLSc_dSgA83EK44FSVguROIEXvi1LIGsOiUYCAyISwJ9y_PBKiQ/viewform?usp=publish-editor" alt="Código QR Google Forms">
+          </div>
+
+          <p class="qr-subtext" style="font-size: 0.82rem; margin-bottom: 20px;">
+            ¿Estás desde tu celular? Puedes acceder directamente haciendo clic abajo:
+          </p>
+
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_dSgA83EK44FSVguROIEXvi1LIGsOiUYCAyISwJ9y_PBKiQ/viewform?usp=publish-editor" target="_blank" class="btn-capsule-dark">
+            Abrir Google Form
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-title-large">RIVERAS</div>
+      <div class="footer-credits">
+        Luna Mireles • Priscila Barron • Dulce Zuñiga • Ingrid Garcia<br>
+        Universidad Tecnológica de Ciudad Juárez — Grupo OLM34<br>
+        Carrera de Logística — Riberas del Bravo
+      </div>
+      <div class="footer-credits" style="font-size: 0.8rem; margin-top: 10px; opacity: 0.7;">
+        Modelo Integral de Clasificación Arancelaria II
+      </div>
+    </footer>
+
+  </body>
+  </html>
